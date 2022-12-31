@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kalk2.Views.Main"
+             Title="Main">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="9*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Padding="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Text="Kalkulator" Padding="0, 10, 0, 0" HeightRequest="35" BackgroundColor="#222"/>
+            <Button Grid.Column="1" Text="Historia" Clicked="showHistory" Padding="0, 10, 0, 0" HeightRequest="35"/>
+        </Grid>
+        <Label Grid.Row="1" FontSize="Small" x:Name="poleTekstoweHistoria" TextColor="Grey"/>
+        <Label Grid.Row="2" FontSize="Large" x:Name="poleTekstowe" TextColor="Wheat"/>
+        <Grid Padding="5" Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Button FontSize="Large" Clicked="btnMore" Text="→" Grid.Row="0" Grid.Column="0"/>
+            <Button FontSize="Large" Clicked="btnC" Text="C" Grid.Row="0" Grid.Column="1"/>
+            <Button FontSize="Large" x:Name="btn5" Clicked="btnCalc" Text="%" Grid.Row="0" Grid.Column="2"/>
+            <Button FontSize="Large" x:Name="btn4" Clicked="btnCalc" Text="/" Grid.Row="0" Grid.Column="3"/>
+            <Button FontSize="Large" Clicked="btnCalc" Text="7" Grid.Row="1" Grid.Column="0"/>
+            <Button FontSize="Large" Clicked="btnCalc" Text="8" Grid.Row="1" Grid.Column="1"/>
+            <Button FontSize="Large" Clicked="btnCalc" Text="9" Grid.Row="1" Grid.Column="2"/>
+            <Button FontSize="Large" x:Name="btn3" Clicked="btnCalc" Text="*" Grid.Row="1" Grid.Column="3"/>
+            <Button FontSize="Large" Clicked="btnCalc" Text="4" Grid.Row="2" Grid.Column="0"/>
+            <Button FontSize="Large" Clicked="btnCalc" Text="5" Grid.Row="2" Grid.Column="1"/>
+            <Button FontSize="Large" Clicked="btnCalc" Text="6" Grid.Row="2" Grid.Column="2"/>
+            <Button FontSize="Large" x:Name="btn2" Clicked="btnCalc" Text="-" Grid.Row="2" Grid.Column="3"/>
+            <Button FontSize="Large" Clicked="btnCalc" Text="1" Grid.Row="3" Grid.Column="0"/>
+            <Button FontSize="Large" Clicked="btnCalc" Text="2" Grid.Row="3" Grid.Column="1"/>
+            <Button FontSize="Large" Clicked="btnCalc" Text="3" Grid.Row="3" Grid.Column="2"/>
+            <Button FontSize="Large" x:Name="btn1" Clicked="btnCalc" Text="+" Grid.Row="3" Grid.Column="3"/>
+            <Button FontSize="Large" Clicked="btnInfo" Text="i" Grid.Row="4" Grid.Column="0"/>
+            <Button FontSize="Large" Clicked="btnCalc" Text="0" Grid.Row="4" Grid.Column="1"/>
+            <Button FontSize="Large" Clicked="btnCalc" Text="." Grid.Row="4" Grid.Column="2"/>
+            <Button FontSize="Large" Clicked="btnResult" Text="=" Grid.Row="4" Grid.Column="3"/>
+        </Grid>
+    </Grid>
+</ContentPage>
