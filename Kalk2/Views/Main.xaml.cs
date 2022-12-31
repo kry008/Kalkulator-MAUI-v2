@@ -1,7 +1,5 @@
 ﻿namespace Kalk2.Views;
-
 using NCalc;
-
 public partial class Main : ContentPage
 {
     string equation = "";
@@ -32,22 +30,8 @@ public partial class Main : ContentPage
         try
         {
             Expression e = new Expression(expression);
-
-            // Evaluate the expression and return the result
             var a = Convert.ToDouble(e.Evaluate());
-
-            /*
-            System.Data.DataTable table = new System.Data.DataTable();
-            table.Columns.Add("expression", string.Empty.GetType(), expression);
-            System.Data.DataRow row = table.NewRow();
-            table.Rows.Add(row);
-            var a = double.Parse((string)row["expression"]);*/
-            if (a == double.PositiveInfinity)
-            {
-                flagError = true;
-                return 0;
-            }
-            if (a == double.NegativeInfinity)
+            if (a == double.PositiveInfinity || a == double.NegativeInfinity)
             {
                 flagError = true;
                 return 0;
