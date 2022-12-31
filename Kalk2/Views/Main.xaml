@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:windows="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.WindowsSpecific;assembly=Microsoft.Maui.Controls"
              x:Class="Kalk2.Views.Main"
              Title="Main">
     <Grid>
@@ -43,7 +42,7 @@
             <Button FontSize="Large" Clicked="btnCalc" Text="8" Grid.Row="1" Grid.Column="1"/>
             <Button FontSize="Large" Clicked="btnCalc" Text="9" Grid.Row="1" Grid.Column="2"/>
             <Button FontSize="Large" x:Name="btn3" Clicked="btnCalc" Text="*" Grid.Row="1" Grid.Column="3"/>
-            <Button FontSize="Large" Clicked="btnCalc" Text="4" Grid.Row="2" Grid.Column="0" windows:VisualElement.AccessKey="F"/>
+            <Button FontSize="Large" Clicked="btnCalc" Text="4" Grid.Row="2" Grid.Column="0"/>
             <Button FontSize="Large" Clicked="btnCalc" Text="5" Grid.Row="2" Grid.Column="1"/>
             <Button FontSize="Large" Clicked="btnCalc" Text="6" Grid.Row="2" Grid.Column="2"/>
             <Button FontSize="Large" x:Name="btn2" Clicked="btnCalc" Text="-" Grid.Row="2" Grid.Column="3"/>
