@@ -34,6 +34,7 @@ public partial class Main : ContentPage
         }
         catch(Exception e)
         {
+            DisplayAlert("Error", e.Message, "OK");
             flagError = true;
             return -1;
         }
@@ -173,7 +174,7 @@ public partial class Main : ContentPage
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error", "There was an error", "Ok");
+            await DisplayAlert("Error", "There was an error\n" + ex.Message, "Ok");
         }
     }
 

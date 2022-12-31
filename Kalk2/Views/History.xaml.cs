@@ -16,7 +16,7 @@ public partial class History : ContentPage
 
     private void btnClaculatorPage(object sender, EventArgs e)
     {
-
+        Navigation.PushAsync(new Main());
     }
 
 	private void showHistory()
