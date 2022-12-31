@@ -1,4 +1,7 @@
-﻿namespace Kalk2;
+﻿global using Plugin.Maui.Audio;
+using Android.Media;
+
+namespace Kalk2;
 
 public static class MauiProgram
 {
@@ -13,7 +16,7 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 fonts.AddFont("kalk.ttf", "Kalk");
             });
-
-		return builder.Build();
+        builder.Services.AddSingleton(AudioManager.Current);
+        return builder.Build();
 	}
 }

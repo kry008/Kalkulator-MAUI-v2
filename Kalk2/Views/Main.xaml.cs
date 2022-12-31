@@ -30,7 +30,23 @@ public partial class Main : ContentPage
             table.Columns.Add("expression", string.Empty.GetType(), expression);
             System.Data.DataRow row = table.NewRow();
             table.Rows.Add(row);
-            return double.Parse((string)row["expression"]);
+            var a = double.Parse((string)row["expression"]);
+            if (a == double.PositiveInfinity)
+            {
+                flagError = true;
+                return 0;
+            }
+            if (a == double.NegativeInfinity)
+            {
+                flagError = true;
+                return 0;
+            }
+            if (a != a)
+            {
+                flagError = true;
+                return -2;
+            }
+            return a;
         }
         catch(Exception e)
         {
