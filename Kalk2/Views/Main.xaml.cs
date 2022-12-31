@@ -6,9 +6,10 @@ public partial class Main : ContentPage
     string result = "";
     bool isOperator = false;
     bool isDot = false;
+    bool isBracket = false;
     int operatorTab = 0;
     static char[] operators1 = { '+', '-', '*', '/', '%' };
-    static char[] operators2 = { '(', ')', ' ', ' ', ' ' };
+    static char[] operators2 = { '+', '-', '*', ')', '(' };
     char[][] operators = { operators1, operators2 };
     bool flagError = false;
 
@@ -119,13 +120,24 @@ public partial class Main : ContentPage
             equation = "";
             result = "";
         }
-        if (btnText == "(" || btnText == ")")
+        if (btnText == "(")
         {
-            if (isDot == false && isOperator == true)
+            if (isDot == false && isOperator == true && isBracket == false)
             {
                 isDot = false;
                 isOperator = false;
                 equation += btnText;
+                isBracket = true;
+            }
+        }
+        if (btnText == ")")
+        {
+            if (isDot == false && isOperator == false && isBracket == true)
+            {
+                isDot = false;
+                isOperator = true;
+                equation += btnText;
+                isBracket = false;
             }
         }
         txtField.Text = equation;
@@ -141,7 +153,7 @@ public partial class Main : ContentPage
         }
         catch (Exception ex)
         {
-            DisplayAlert("Error", "There was an error", "Ok");
+            await DisplayAlert("Error", "There was an error", "Ok");
         }
     }
 
