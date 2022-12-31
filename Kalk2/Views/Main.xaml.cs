@@ -12,7 +12,8 @@ public partial class Main : ContentPage
     int operatorTab = 0;
     static string[] operators1 = { "+", "-", "*", "/", "%" };
     static string[] operators2 = { "Log", "Sin", "^", ")", "(" };
-    string[][] operators = { operators1, operators2 };
+    static string[] operators3 = { "Cos", "Tan", "Exp", "Sin", "Atan" };
+    string[][] operators = { operators1, operators2, operators3 };
     bool flagError = false;
     public Main()
     {
@@ -43,7 +44,7 @@ public partial class Main : ContentPage
             }
             return a;
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             DisplayAlert("Error", e.Message, "OK");
             flagError = true;
@@ -57,23 +58,33 @@ public partial class Main : ContentPage
         Button b3 = btn3;
         Button b4 = btn4;
         Button b5 = btn5;
-        if(operatorTab == 0)
+        if (operatorTab == 0)
         {
-            b1.Text = operators[1][0].ToString();
-            b2.Text = operators[1][1].ToString();
-            b3.Text = operators[1][2].ToString();
-            b4.Text = operators[1][3].ToString();
-            b5.Text = operators[1][4].ToString();
+            b1.Text = operators[1][0];
+            b2.Text = operators[1][1];
+            b3.Text = operators[1][2];
+            b4.Text = operators[1][3];
+            b5.Text = operators[1][4];
             operatorTab = 1;
+        }
+        else if (operatorTab == 1)
+        {
+            b1.Text = operators[2][0];
+            b2.Text = operators[2][1];
+            b3.Text = operators[2][2];
+            b4.Text = operators[2][3];
+            b5.Text = operators[2][4];
+            operatorTab = 2;
         }
         else
         {
-            b1.Text = operators[0][0].ToString();
-            b2.Text = operators[0][1].ToString();
-            b3.Text = operators[0][2].ToString();
-            b4.Text = operators[0][3].ToString();
-            b5.Text = operators[0][4].ToString();
+            b1.Text = operators[0][0];
+            b2.Text = operators[0][1];
+            b3.Text = operators[0][2];
+            b4.Text = operators[0][3];
+            b5.Text = operators[0][4];
             operatorTab = 0;
+
         }
     }
     private void btnResult(object sender, EventArgs e)
@@ -166,7 +177,7 @@ public partial class Main : ContentPage
             equation = "";
             result = "";
         }
-        if (btnText == "^" )
+        if (btnText == "^")
         {
             if (isOperator == false && lastNumber == true)
             {
@@ -179,7 +190,7 @@ public partial class Main : ContentPage
                 lastNumber = false;
             }
         }
-        if ( btnText == "Log")
+        if (btnText == "Log")
         {
             if (isOperator == false && lastNumber == true)
             {
@@ -193,7 +204,7 @@ public partial class Main : ContentPage
             }
 
         }
-        if (btnText == "Sin")
+        if (btnText == "Sin" || btnText == "Cos" || btnText == "Tan" || btnText == "Atan" || btnText == "Exp")
         {
             if (isOperator == false && lastNumber == true)
             {
