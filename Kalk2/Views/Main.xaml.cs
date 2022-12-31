@@ -1,4 +1,7 @@
 ﻿namespace Kalk2.Views;
+
+using NCalc;
+
 public partial class Main : ContentPage
 {
     string equation = "";
@@ -6,10 +9,12 @@ public partial class Main : ContentPage
     bool isOperator = false;
     bool isDot = false;
     bool isBracket = false;
+    bool waitingForOperator = false;
+    bool lastNumber = false;
     int operatorTab = 0;
-    static char[] operators1 = { '+', '-', '*', '/', '%' };
-    static char[] operators2 = { '+', '-', '*', ')', '(' };
-    char[][] operators = { operators1, operators2 };
+    static string[] operators1 = { "+", "-", "*", "/", "%" };
+    static string[] operators2 = { "Log", "Sin", "^", ")", "(" };
+    string[][] operators = { operators1, operators2 };
     bool flagError = false;
     public Main()
     {
@@ -26,11 +31,17 @@ public partial class Main : ContentPage
     {
         try
         {
+            Expression e = new Expression(expression);
+
+            // Evaluate the expression and return the result
+            var a = Convert.ToDouble(e.Evaluate());
+
+            /*
             System.Data.DataTable table = new System.Data.DataTable();
             table.Columns.Add("expression", string.Empty.GetType(), expression);
             System.Data.DataRow row = table.NewRow();
             table.Rows.Add(row);
-            var a = double.Parse((string)row["expression"]);
+            var a = double.Parse((string)row["expression"]);*/
             if (a == double.PositiveInfinity)
             {
                 flagError = true;
@@ -123,6 +134,9 @@ public partial class Main : ContentPage
                     }
                     txtField.Text = result;
                     equation = result;
+                    isOperator = false;
+                    lastNumber = true;
+                    waitingForOperator = true;
                 }
             }
         }
@@ -133,51 +147,101 @@ public partial class Main : ContentPage
         var btnText = btn.Text;
         if (btnText == "1" || btnText == "2" || btnText == "3" || btnText == "4" || btnText == "5" || btnText == "6" || btnText == "7" || btnText == "8" || btnText == "9" || btnText == "0")
         {
-            isOperator = false;
-            equation += btnText;
+            if (!waitingForOperator)
+            {
+                isOperator = false;
+                equation += btnText;
+                lastNumber = true;
+            }
         }
-        if (btnText == "+" || btnText == "-" || btnText == "*" || btnText == "/" || btnText == "%")
+        if ((btnText == "+" || btnText == "-" || btnText == "*" || btnText == "/" || btnText == "%") && lastNumber == true)
         {
             if (isOperator == false)
             {
                 isOperator = true;
                 isDot = false;
                 equation += btnText;
+                waitingForOperator = false;
+                lastNumber = false;
             }
         }
         if (btnText == ".")
         {
-            if (isDot == false && isOperator == false)
+            if (isDot == false && isOperator == false && !waitingForOperator && lastNumber == true)
             {
                 isDot = true;
                 equation += btnText;
+                lastNumber = false;
             }
         }
         if (btnText == "C")
         {
             isOperator = false;
             isDot = false;
+            waitingForOperator = false;
             equation = "";
             result = "";
         }
+        if (btnText == "^" )
+        {
+            if (isOperator == false && lastNumber == true)
+            {
+                isOperator = true;
+                isDot = false;
+                equation = "Pow(" + equation + ",";
+                isBracket = true;
+                waitingForOperator = false;
+
+                lastNumber = false;
+            }
+        }
+        if ( btnText == "Log")
+        {
+            if (isOperator == false && lastNumber == true)
+            {
+                isOperator = true;
+                isDot = false;
+                equation = btnText + "(" + equation + ",";
+                isBracket = true;
+                waitingForOperator = false;
+
+                lastNumber = false;
+            }
+
+        }
+        if (btnText == "Sin")
+        {
+            if (isOperator == false && lastNumber == true)
+            {
+                isOperator = false;
+                isDot = false;
+                isBracket = false;
+                equation = btnText + "(" + equation + ")";
+                waitingForOperator = true;
+                lastNumber = true;
+            }
+        }
         if (btnText == "(")
         {
-            if (isDot == false && isOperator == true && isBracket == false)
+            if (isDot == false && isOperator == true && isBracket == false && !waitingForOperator && lastNumber == false)
             {
-                isDot = false;
-                isOperator = false;
                 equation += btnText;
-                isBracket = true;
+                isOperator = false;
+                isDot = false;
+                isBracket = false;
+                waitingForOperator = false;
+                lastNumber = false;
             }
         }
         if (btnText == ")")
         {
-            if (isDot == false && isOperator == false && isBracket == true)
+            if (isDot == false && isOperator == false && isBracket == true && !waitingForOperator && lastNumber == true)
             {
                 isDot = false;
                 isOperator = false;
                 equation += btnText;
                 isBracket = false;
+                lastNumber = false;
             }
         }
         txtField.Text = equation;
@@ -194,12 +258,14 @@ public partial class Main : ContentPage
             await DisplayAlert("Error", "There was an error\n" + ex.Message, "Ok");
         }
     }
-
     private void btnC(object sender, EventArgs e)
     {
         isOperator = false;
         isDot = false;
         isBracket = false;
+        waitingForOperator = false;
+        lastNumber = false;
+
         equation = "";
         result = "";
         txtField.Text = equation;

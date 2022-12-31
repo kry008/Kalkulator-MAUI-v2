@@ -73,4 +73,9 @@
 	  <Folder Include="Resources\Icon\" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <PackageReference Include="ncalc" Version="1.3.8" />
+	  <PackageReference Include="wilx.System.Linq.Dynamic.Core" Version="2.1.0" />
+	</ItemGroup>
+
 </Project>
