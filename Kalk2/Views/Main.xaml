@@ -18,8 +18,8 @@
             <Button Grid.Column="0" Text="Kalkulator" Padding="0, 10, 0, 0" HeightRequest="35" BackgroundColor="#222"/>
             <Button Grid.Column="1" Text="Historia" Clicked="showHistory" Padding="0, 10, 0, 0" HeightRequest="35"/>
         </Grid>
-        <Label Grid.Row="1" FontSize="Small" x:Name="poleTekstoweHistoria" TextColor="Grey"/>
-        <Label Grid.Row="2" FontSize="Large" x:Name="poleTekstowe" TextColor="Wheat"/>
+        <Label Grid.Row="1" FontSize="Small" x:Name="txtEquation" TextColor="Grey"/>
+        <Label Grid.Row="2" FontSize="Large" x:Name="txtField" TextColor="GreenYellow"/>
         <Grid Padding="5" Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
