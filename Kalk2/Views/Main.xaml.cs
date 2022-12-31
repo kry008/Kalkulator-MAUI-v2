@@ -14,7 +14,6 @@ public partial class Main : ContentPage
     static char[] operators2 = { '+', '-', '*', ')', '(' };
     char[][] operators = { operators1, operators2 };
     bool flagError = false;
-
     public Main()
     {
         InitializeComponent();
@@ -42,7 +41,6 @@ public partial class Main : ContentPage
             return -1;
         }
     }
-
     private void btnMore(object sender, EventArgs e)
     {
         Button b1 = btn1;
@@ -77,11 +75,8 @@ public partial class Main : ContentPage
             btn3.On<Microsoft.Maui.Controls.PlatformConfiguration.Windows>().SetAccessKey(operators[0][2].ToString());
             btn4.On<Microsoft.Maui.Controls.PlatformConfiguration.Windows>().SetAccessKey(operators[0][3].ToString());
             btn5.On<Microsoft.Maui.Controls.PlatformConfiguration.Windows>().SetAccessKey(operators[0][4].ToString());
-
         }
-
     }
-
     private void btnResult(object sender, EventArgs e)
     {
         if (isDot)
@@ -109,21 +104,23 @@ public partial class Main : ContentPage
                 else
                 {
                     txtField.Text = result;
+                    if (result.Contains(","))
+                    {
+                        result = result.Replace(",", ".");
+                    }
                     equation = result;
                 }
             }
         }
-        
     }
-
     private void btnCalc(object sender, EventArgs e)
     {
+        equation = txtEquation.Text;
         var btn = (Button)sender;
         var btnText = btn.Text;
         if (btnText == "1" || btnText == "2" || btnText == "3" || btnText == "4" || btnText == "5" || btnText == "6" || btnText == "7" || btnText == "8" || btnText == "9" || btnText == "0")
         {
             isOperator = false;
-            isDot = false;
             equation += btnText;
         }
         if (btnText == "+" || btnText == "-" || btnText == "*" || btnText == "/" || btnText == "%")
@@ -137,10 +134,9 @@ public partial class Main : ContentPage
         }
         if (btnText == ".")
         {
-            if (isDot == false)
+            if (isDot == false && isOperator == false)
             {
                 isDot = true;
-                isOperator = false;
                 equation += btnText;
             }
         }
@@ -172,9 +168,7 @@ public partial class Main : ContentPage
             }
         }
         txtField.Text = equation;
-
     }
-
     private async void btnInfo(object sender, EventArgs e)
     {
         try
@@ -193,14 +187,11 @@ public partial class Main : ContentPage
         isOperator = false;
         isDot = false;
         isBracket = false;
-        
         equation = "";
         result = "";
         txtField.Text = equation;
         txtField.Text = result;
-
     }
-
     private void showHistory(object sender, EventArgs e)
     {
         Navigation.PushAsync(new History());
