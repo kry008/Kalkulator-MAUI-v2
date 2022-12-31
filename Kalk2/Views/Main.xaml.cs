@@ -71,16 +71,34 @@ public partial class Main : ContentPage
 
     private void btnResult(object sender, EventArgs e)
     {
-        txtEquation.Text = equation;
-        result = Evaluate(equation).ToString();
-        if (flagError)
+        if (isDot)
         {
-            txtField.Text = "Error";
+            equation += "0";
+        }
+        if (isOperator)
+        {
+            DisplayAlert("Error", "You can't end with an operator", "OK");
         }
         else
         {
-            txtField.Text = result;
-            equation = result;
+            if (isBracket)
+            {
+                DisplayAlert("Error", "You need to close the bracket", "OK");
+            }
+            else
+            {
+                txtEquation.Text = equation;
+                result = Evaluate(equation).ToString();
+                if (flagError)
+                {
+                    txtField.Text = "Error";
+                }
+                else
+                {
+                    txtField.Text = result;
+                    equation = result;
+                }
+            }
         }
         
     }
@@ -135,7 +153,7 @@ public partial class Main : ContentPage
             if (isDot == false && isOperator == false && isBracket == true)
             {
                 isDot = false;
-                isOperator = true;
+                isOperator = false;
                 equation += btnText;
                 isBracket = false;
             }
@@ -161,6 +179,8 @@ public partial class Main : ContentPage
     {
         isOperator = false;
         isDot = false;
+        isBracket = false;
+        
         equation = "";
         result = "";
         txtField.Text = equation;
@@ -170,6 +190,6 @@ public partial class Main : ContentPage
 
     private void showHistory(object sender, EventArgs e)
     {
-
+        Navigation.PushAsync(new History());
     }
 }
