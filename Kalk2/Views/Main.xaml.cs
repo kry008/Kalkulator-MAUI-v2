@@ -1,4 +1,6 @@
-﻿namespace Kalk2.Views;
+﻿using Microsoft.Maui.Controls.PlatformConfiguration.WindowsSpecific;
+
+namespace Kalk2.Views;
 
 public partial class Main : ContentPage
 {
@@ -56,6 +58,11 @@ public partial class Main : ContentPage
             b4.Text = operators[1][3].ToString();
             b5.Text = operators[1][4].ToString();
             operatorTab = 1;
+            btn1.On<Microsoft.Maui.Controls.PlatformConfiguration.Windows>().SetAccessKey(operators[1][0].ToString());
+            btn2.On<Microsoft.Maui.Controls.PlatformConfiguration.Windows>().SetAccessKey(operators[1][1].ToString());
+            btn3.On<Microsoft.Maui.Controls.PlatformConfiguration.Windows>().SetAccessKey(operators[1][2].ToString());
+            btn4.On<Microsoft.Maui.Controls.PlatformConfiguration.Windows>().SetAccessKey(operators[1][3].ToString());
+            btn5.On<Microsoft.Maui.Controls.PlatformConfiguration.Windows>().SetAccessKey(operators[1][4].ToString());
         }
         else
         {
@@ -65,6 +72,12 @@ public partial class Main : ContentPage
             b4.Text = operators[0][3].ToString();
             b5.Text = operators[0][4].ToString();
             operatorTab = 0;
+            btn1.On<Microsoft.Maui.Controls.PlatformConfiguration.Windows>().SetAccessKey(operators[0][0].ToString());
+            btn2.On<Microsoft.Maui.Controls.PlatformConfiguration.Windows>().SetAccessKey(operators[0][1].ToString());
+            btn3.On<Microsoft.Maui.Controls.PlatformConfiguration.Windows>().SetAccessKey(operators[0][2].ToString());
+            btn4.On<Microsoft.Maui.Controls.PlatformConfiguration.Windows>().SetAccessKey(operators[0][3].ToString());
+            btn5.On<Microsoft.Maui.Controls.PlatformConfiguration.Windows>().SetAccessKey(operators[0][4].ToString());
+
         }
 
     }
