@@ -107,9 +107,10 @@ public partial class Main : ContentPage
                 }
                 else
                 {
-                    if (result.Contains(","))
+                    if (result.Contains(",") || result.Contains(" "))
                     {
                         result = result.Replace(",", ".");
+                        result = result.Replace(" ", "");
                     }
                     string path = Path.Combine(FileSystem.AppDataDirectory, "calc");
                     if (!File.Exists(path))
