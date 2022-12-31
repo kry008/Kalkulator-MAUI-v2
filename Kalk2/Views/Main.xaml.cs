@@ -1,7 +1,4 @@
-﻿using Microsoft.Maui.Controls.PlatformConfiguration.WindowsSpecific;
-
-namespace Kalk2.Views;
-
+﻿namespace Kalk2.Views;
 public partial class Main : ContentPage
 {
     string equation = "";
@@ -21,9 +18,9 @@ public partial class Main : ContentPage
     public Main(string equation, string result)
     {
         InitializeComponent();
-        this.equation = equation;
-        this.result = result;
-        
+        txtField.Text = result;
+        this.equation = result;
+        txtEquation.Text = equation;
     }
     public double Evaluate(string expression)
     {
@@ -93,11 +90,20 @@ public partial class Main : ContentPage
                 }
                 else
                 {
-                    txtField.Text = result;
                     if (result.Contains(","))
                     {
                         result = result.Replace(",", ".");
                     }
+                    string path = Path.Combine(FileSystem.AppDataDirectory, "calc");
+                    if (!File.Exists(path))
+                    {
+                        File.Create(path);
+                    }
+                    using (StreamWriter sw = File.AppendText(path))
+                    {
+                        sw.WriteLine(equation + ";" + result);
+                    }
+                    txtField.Text = result;
                     equation = result;
                 }
             }
@@ -105,7 +111,6 @@ public partial class Main : ContentPage
     }
     private void btnCalc(object sender, EventArgs e)
     {
-        equation = txtEquation.Text;
         var btn = (Button)sender;
         var btnText = btn.Text;
         if (btnText == "1" || btnText == "2" || btnText == "3" || btnText == "4" || btnText == "5" || btnText == "6" || btnText == "7" || btnText == "8" || btnText == "9" || btnText == "0")
