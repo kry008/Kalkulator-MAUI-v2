@@ -2,10 +2,14 @@ namespace Kalk2.Views;
 
 public partial class Main : ContentPage
 {
-	public Main()
-	{
-		InitializeComponent();
-	}
+    public Main()
+    {
+        InitializeComponent();
+    }
+    public Main(string equation, string result)
+    {
+        InitializeComponent();
+    }
 
     private void btnMore(object sender, EventArgs e)
     {
