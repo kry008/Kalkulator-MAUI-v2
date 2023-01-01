@@ -25,6 +25,7 @@ public partial class Main : ContentPage
         txtField.Text = result;
         this.equation = result;
         txtEquation.Text = equation;
+        this.lastNumber = true;
     }
     public double Evaluate(string expression)
     {
