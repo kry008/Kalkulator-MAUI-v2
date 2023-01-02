@@ -20,8 +20,8 @@
             <Button Grid.Column="0" Text="Calculator" Padding="0, 10, 0, 0" HeightRequest="35" BackgroundColor="#222"/>
             <Button Grid.Column="1" Text="History" Clicked="showHistory" Padding="0, 10, 0, 0" HeightRequest="35"/>
         </Grid>
-        <Label Grid.Row="1" FontSize="Small" FontFamily="Kalk" x:Name="txtEquation" TextColor="Grey"/>
-        <Label Grid.Row="2" FontSize="Large" FontFamily="Kalk" x:Name="txtField" TextColor="GreenYellow"/>
+        <Label Grid.Row="1" FontSize="Small" FontFamily="Kalk" x:Name="txtEquation" TextColor="{StaticResource Secondary}"/>
+        <Label Grid.Row="2" FontSize="Large" FontFamily="Kalk" x:Name="txtField" TextColor="{StaticResource Primary}"/>
         <Grid Padding="5" Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />

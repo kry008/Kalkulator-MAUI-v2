@@ -24,7 +24,7 @@
     </Style>
 
     <Style TargetType="Button">
-        <Setter Property="TextColor" Value="GreenYellow" />
+        <Setter Property="TextColor" Value="{StaticResource Primary}" />
         <Setter Property="BackgroundColor" Value="Black" />
         <Setter Property="FontFamily" Value="Kalk"/>
         <Setter Property="FontSize" Value="20"/>

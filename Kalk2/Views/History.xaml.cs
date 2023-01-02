@@ -28,10 +28,11 @@ public partial class History : ContentPage
             if (!File.Exists(path))
             {
                 btnClear.IsVisible = false;
+                //allow next line
                 Label label = new Label
                 {
                     Text = "No calculation history",
-                    FontSize = 20,
+                    FontSize = 25,
                     HorizontalOptions = LayoutOptions.Center,
                     VerticalOptions = LayoutOptions.Center
                 };
@@ -49,7 +50,7 @@ public partial class History : ContentPage
                 {
                     Text = $"{parts[0]} = {parts[1]}",
                     Margin = new Thickness(5),
-                    FontSize = 20,
+                    FontSize = 17,
                     HorizontalOptions = LayoutOptions.FillAndExpand,
                     VerticalOptions = LayoutOptions.FillAndExpand
                 };
